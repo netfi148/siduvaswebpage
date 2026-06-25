@@ -1,422 +1,224 @@
+
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siduva - Virtual Assistant Services</title>
-    
-    <!-- Meta tags for SEO & GitHub Pages -->
-    <meta name="description" content="Grow your business while we handle the daily tasks. Hire a dedicated virtual assistant from Siduva today.">
-    
-    <!-- Tailwind CSS -->
+    <title>Siduva - Professional Virtual Assistant Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        brand: {
-                            navy: '#0f172a',    // Darker slate/navy
-                            blue: '#1e3a8a',    // Primary Siduva Blue
-                            lightBlue: '#3b82f6', // Accent blue
-                            accent: '#f59e0b',  // Amber/Gold for primary CTA
-                            gray: '#f8fafc',    // Very light background
-                            darkGray: '#334155' // Standard text color
-                        }
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
-                        'hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                        primary: '#1e3a8a',
+                        secondary: '#3b82f6',
+                        accent: '#f59e0b'
                     }
                 }
             }
         }
     </script>
-
-    <!-- Custom CSS for Animations and Overrides -->
     <style>
-        /* Hero Background with an overlay to ensure text readability */
+        .section-view { display: none; }
+        .section-view.active { display: block; }
         .hero-bg {
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 40%, rgba(255, 255, 255, 0.2) 100%), 
-                url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');
+            background-image: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
         }
-        
-        /* Smooth transitions for interactive elements */
-        .card-transition {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-transition:hover {
-            transform: translateY(-8px);
-        }
-
-        /* Scroll Reveal Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-        .delay-400 { transition-delay: 400ms; }
     </style>
 </head>
-<body class="font-sans text-brand-darkGray bg-white antialiased overflow-x-hidden">
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-shadow duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <a href="#" class="flex-shrink-0 flex items-center group">
-                    <div class="text-3xl font-extrabold text-brand-blue tracking-tighter flex items-center">
-                        <div class="bg-brand-blue text-white w-10 h-10 rounded-lg flex items-center justify-center mr-3 shadow-md group-hover:bg-brand-lightBlue transition-colors duration-300">
-                            S
-                        </div>
-                        SIDUVA
-                    </div>
-                </a>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-gray-600 hover:text-brand-blue px-3 py-2 text-sm font-semibold transition duration-150 ease-in-out uppercase tracking-wider relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-brand-blue after:transition-all after:duration-300">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-brand-blue px-3 py-2 text-sm font-semibold transition duration-150 ease-in-out uppercase tracking-wider relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-brand-blue after:transition-all after:duration-300">About</a>
-                    <a href="#services" class="text-gray-600 hover:text-brand-blue px-3 py-2 text-sm font-semibold transition duration-150 ease-in-out uppercase tracking-wider relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-brand-blue after:transition-all after:duration-300">Services</a>
-                    <a href="#apply" class="bg-brand-blue text-white px-5 py-2.5 rounded-md text-sm font-bold uppercase tracking-wider hover:bg-brand-navy transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Apply Now</a>
-                </nav>
-                
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-blue focus:outline-none p-2 transition-colors" aria-label="Toggle Menu">
-                        <i class="fas fa-bars text-2xl" id="menu-icon"></i>
-                    </button>
-                </div>
-            </div>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-3xl font-bold text-primary cursor-pointer tracking-tighter" onclick="showSection('home')">SIDUVA</div>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#" onclick="showSection('home')" class="hover:text-primary font-medium transition">Home</a>
+                <a href="#" onclick="showSection('about')" class="hover:text-primary font-medium transition">About</a>
+                <a href="#" onclick="showSection('services')" class="hover:text-primary font-medium transition">Services</a>
+                <button onclick="showSection('apply')" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-800 transition shadow-lg">APPLY HERE</button>
+                <button onclick="showSection('contact')" class="border-2 border-primary text-primary px-5 py-2 rounded-full hover:bg-blue-50 transition font-bold">NEED VA?</button>
+            </nav>
+            <button class="md:hidden p-2 text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-        
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#home" class="mobile-link block px-4 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-brand-gray transition-colors">Home</a>
-                <a href="#about" class="mobile-link block px-4 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-brand-gray transition-colors">About</a>
-                <a href="#services" class="mobile-link block px-4 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-brand-gray transition-colors">Services</a>
-                <div class="pt-4 border-t border-gray-100">
-                    <a href="#apply" class="mobile-link block w-full text-center px-4 py-3 bg-brand-blue text-white font-bold rounded-md shadow-md">Apply Now</a>
-                </div>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-4">
+            <a href="#" onclick="showSection('home'); document.getElementById('mobile-menu').classList.add('hidden')" class="block py-2 font-semibold">Home</a>
+            <a href="#" onclick="showSection('about'); document.getElementById('mobile-menu').classList.add('hidden')" class="block py-2 font-semibold">About</a>
+            <a href="#" onclick="showSection('services'); document.getElementById('mobile-menu').classList.add('hidden')" class="block py-2 font-semibold">Services</a>
+            <button onclick="showSection('apply'); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left font-bold text-primary py-2">APPLY HERE</button>
+            <button onclick="showSection('contact'); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left font-bold text-primary py-2">NEED VA?</button>
         </div>
     </header>
 
-    <main class="pt-20">
-        <section id="home" class="hero-bg relative w-full min-h-[600px] lg:h-[80vh] flex items-center border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 py-16">
-                <div class="max-w-2xl md:w-3/4 lg:w-3/5 reveal">
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-brand-navy leading-[1.1] mb-6 tracking-tight">
-                        Grow Your <br>
-                        <span class="text-brand-blue relative inline-block">
-                            Business
-                            <!-- Decorative underline -->
-                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-accent/50" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/>
-                            </svg>
-                        </span>, While <br>
-                        We Handle the <br>
-                        Daily Tasks!
-                    </h1>
-                    <p class="text-lg sm:text-xl text-gray-600 mb-10 font-medium tracking-wide flex items-center">
-                        <i class="fas fa-hashtag text-brand-accent mr-1"></i> WorkNowWith Siduva
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                        <a href="#apply" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm sm:text-base font-bold rounded-md text-brand-navy bg-brand-accent hover:bg-yellow-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                            APPLY HERE
-                        </a>
-                        <a href="#need-va" class="inline-flex justify-center items-center px-8 py-4 border-2 border-brand-blue text-sm sm:text-base font-bold rounded-md text-brand-blue bg-white hover:bg-brand-blue hover:text-white transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 group">
-                            NEED VA? <i class="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all"></i>
-                        </a>
+    <main id="main-content" class="min-h-screen">
+
+        <section id="home" class="section-view active">
+            <!-- Hero Section -->
+            <div class="hero-bg py-24 md:py-32 px-4 text-center text-white">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Grow Your Business, While We Handle the Daily Tasks!</h1>
+                    <p class="text-2xl mb-10 text-blue-100 italic">#WorkNowWithSiduva</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="showSection('apply')" class="bg-accent text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition shadow-xl">APPLY HERE</button>
+                        <button onclick="showSection('contact')" class="bg-white text-primary px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition shadow-xl">NEED VA?</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Hire Section -->
+            <div class="max-w-6xl mx-auto py-16 px-4">
+                <h2 class="text-4xl font-bold text-center mb-4 text-primary">WHY Hire a Virtual Assistant from Siduva?</h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">In today's fast-paced business environment, every minute counts. As a business owner, your time is best spent growing your company, building client relationships, and increasing revenue.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="p-8 bg-white rounded-2xl shadow-lg border-t-4 border-primary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Dedicated and Reliable Support</h3>
+                        <p class="text-gray-600">Our VAs become an extension of your team, ensuring daily tasks are handled professionally and consistently.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl shadow-lg border-t-4 border-secondary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Cost-Effective Solution</h3>
+                        <p class="text-gray-600">Access qualified Virtual Assistants at competitive rates, reducing your operational costs while maintaining quality.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl shadow-lg border-t-4 border-accent">
+                        <h3 class="text-xl font-bold text-primary mb-3">Flexible Support</h3>
+                        <p class="text-gray-600">Whether part-time or full-time, Siduva offers solutions that scale with your business growth.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl shadow-lg border-t-4 border-blue-400">
+                        <h3 class="text-xl font-bold text-primary mb-3">Cultural Adaptability</h3>
+                        <p class="text-gray-600">Our VAs easily adapt to different work cultures, communication styles, and global business environments.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white py-16 px-4">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-primary">Why Siduva Partners with Filipino Virtual Assistants?</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+                            <div class="font-bold text-primary text-xl mb-2">Strong Work Ethic</div>
+                            <p class="text-gray-600 text-sm">Hardworking, dependable, and committed to delivering high-quality results consistently.</p>
+                        </div>
+                        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+                            <div class="font-bold text-primary text-xl mb-2">Flexible & Adaptable</div>
+                            <p class="text-gray-600 text-sm">They easily adjust to different time zones, tools, systems, and requirements.</p>
+                        </div>
+                        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+                            <div class="font-bold text-primary text-xl mb-2">Customer Service Excellence</div>
+                            <p class="text-gray-600 text-sm">Patient, friendly, and naturally oriented towards building positive client relationships.</p>
+                        </div>
+                        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+                            <div class="font-bold text-primary text-xl mb-2">Cost-Effective & High Quality</div>
+                            <p class="text-gray-600 text-sm">Professional support at a more affordable rate without compromising on quality.</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-12 text-gray-500 italic">At Siduva, most of our Virtual Assistants are from the Philippines because Filipino VAs are known worldwide for their strong skills, professionalism, and reliability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-view py-16 px-4 max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-8 text-center">ABOUT US</h2>
+            <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>At SIDUVA, we help businesses achieve greater efficiency and growth by providing highly skilled, reliable, and dedicated Filipino Virtual Assistants. We understand that business owners often spend valuable time on repetitive and time-consuming tasks.</p>
+                <p>We carefully recruit, screen, and match Virtual Assistants based on each client's specific needs, industry, and work requirements. Whether you need assistance with admin, customer support, sales, or lead generation, SIDUVA can connect you with the right professional.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 my-10">
+                    <div class="bg-blue-900 text-white p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4">OUR MISSION</h3>
+                        <p>To empower businesses worldwide by providing exceptional virtual assistance services that improve productivity, support growth, and create lasting business success.</p>
+                    </div>
+                    <div class="bg-secondary text-white p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4">OUR VISION</h3>
+                        <p>To become a trusted global partner for businesses seeking professional, reliable, and results-driven virtual assistant solutions.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="py-20 lg:py-28 bg-white relative">
-            <!-- Decorative Background Element -->
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-brand-gray opacity-50 blur-3xl -z-10"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-                <span class="text-brand-accent font-bold tracking-wider uppercase text-sm mb-2 block">About Us</span>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-brand-navy mb-8 tracking-tight">
-                    WHY Hire a Virtual Assistant <br class="hidden sm:block"> from Siduva?
-                </h2>
-                <div class="max-w-4xl mx-auto text-lg md:text-xl text-gray-600 space-y-6 leading-relaxed">
-                    <p>
-                        In today's fast-paced business environment, every minute counts. As a business owner, your time is best spent growing your company, building client relationships, and increasing revenue—not getting overwhelmed by administrative tasks.
-                    </p>
-                    <p class="font-bold text-brand-blue text-2xl mt-8">
-                        That's where Siduva comes in.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 pb-24 bg-brand-gray border-y border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    
-                    <!-- Feature 1 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-gray-100 card-transition flex flex-col items-center text-center reveal delay-100">
-                        <div class="w-16 h-16 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center mb-6 transform -rotate-3 shadow-inner">
-                            <i class="fas fa-handshake text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-navy mb-4 leading-tight">Dedicated and<br>Reliable Support</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            At Siduva, we provide skilled Virtual Assistants who are committed to helping businesses operate more efficiently.
-                            <br><br>
-                            Our VAs become an extension of your team, ensuring daily tasks are handled professionally and consistently.
-                        </p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-gray-100 card-transition flex flex-col items-center text-center reveal delay-200">
-                        <div class="w-16 h-16 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mb-6 transform rotate-3 shadow-inner">
-                            <i class="fas fa-piggy-bank text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-navy mb-4 leading-tight">Cost-Effective<br>Solution</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Hiring through Siduva allows you to access qualified Virtual Assistants at competitive rates, helping you reduce operational costs while maintaining high-quality support.
-                        </p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-gray-100 card-transition flex flex-col items-center text-center reveal delay-300">
-                        <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mb-6 transform -rotate-3 shadow-inner">
-                            <i class="fas fa-clock text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-navy mb-4 leading-tight">Flexible<br>Support</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Whether you need part-time, full-time, or dedicated long-term assistance, Siduva offers flexible solutions that scale with your business needs seamlessly.
-                        </p>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-soft border border-gray-100 card-transition flex flex-col items-center text-center reveal delay-400">
-                        <div class="w-16 h-16 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center mb-6 transform rotate-3 shadow-inner">
-                            <i class="fas fa-globe-americas text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-brand-navy mb-4 leading-tight">Cultural<br>Adaptability</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Our Virtual Assistants can easily adapt to different work cultures, communication styles, and business environments, ensuring smooth collaboration worldwide.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-brand-blue py-16 relative overflow-hidden" id="need-va">
-            <!-- Background pattern -->
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
-                    Find the Right Virtual Assistant for Your Business.
-                </h2>
-                <a href="#apply" class="inline-flex justify-center items-center px-10 py-4 border-2 border-brand-accent text-base font-bold rounded-full text-brand-navy bg-brand-accent hover:bg-white hover:border-white hover:text-brand-blue transition-all duration-300 shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-1">
-                    Hire a VA - Click Here
-                </a>
-            </div>
-        </section>
-
-        <section class="py-20 bg-white" id="services">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-brand-accent font-bold tracking-wider uppercase text-sm mb-2 block">Our Talent</span>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-brand-navy mb-6 tracking-tight">
-                        Why Siduva Partners with <br class="hidden md:block"> Filipino Virtual Assistants?
-                    </h2>
-                </div>
-
-                <!-- Traits Table / Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-brand-gray p-2 sm:p-4 rounded-2xl border border-gray-200 shadow-soft reveal">
-                    
-                    <!-- Trait 1 -->
-                    <div class="bg-white p-6 md:p-8 rounded-xl border-t-4 border-brand-blue shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="text-lg md:text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-gray-100 flex items-center">
-                            <i class="fas fa-briefcase text-brand-blue mr-3 opacity-70"></i> Strong Work Ethic
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Filipino VAs are known for being hardworking, dependable, and committed to delivering high-quality results consistently.
-                        </p>
-                    </div>
-
-                    <!-- Trait 2 -->
-                    <div class="bg-white p-6 md:p-8 rounded-xl border-t-4 border-brand-lightBlue shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="text-lg md:text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-gray-100 flex items-center">
-                            <i class="fas fa-sync-alt text-brand-lightBlue mr-3 opacity-70"></i> Flexible and Adaptable
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            They easily adjust to different time zones, tools, systems, and client requirements, making them ideal for global businesses.
-                        </p>
-                    </div>
-
-                    <!-- Trait 3 -->
-                    <div class="bg-white p-6 md:p-8 rounded-xl border-t-4 border-brand-accent shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="text-lg md:text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-gray-100 flex items-center">
-                            <i class="fas fa-smile text-brand-accent mr-3 opacity-70"></i> Customer Service Excellence
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Naturally patient, friendly, and service-oriented, Filipino VAs excel in handling customer interactions and building positive client relationships.
-                        </p>
-                    </div>
-
-                    <!-- Trait 4 -->
-                    <div class="bg-white p-6 md:p-8 rounded-xl border-t-4 border-green-500 shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="text-lg md:text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-gray-100 flex items-center">
-                            <i class="fas fa-chart-line text-green-500 mr-3 opacity-70"></i> Cost-Effective but High Quality
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Businesses get professional, skilled support at a more affordable rate compared to many other markets—without compromising quality.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="mt-12 text-center max-w-4xl mx-auto reveal">
-                    <div class="inline-block p-1 rounded-2xl bg-gradient-to-r from-brand-blue to-brand-lightBlue">
-                        <div class="bg-white px-8 py-6 rounded-xl">
-                            <p class="text-lg md:text-xl text-gray-700 font-medium italic">
-                                "At Siduva, most of our Virtual Assistants are from the Philippines because Filipino VAs are known worldwide for their strong skills, professionalism, and reliability."
-                            </p>
-                        </div>
+        <section id="services" class="section-view py-16 px-4 max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-8 text-center">SERVICES WE OFFER</h2>
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center">✔️ Customer Service Representative</li>
+                        <li class="flex items-center">✔️ Administrative Assistants</li>
+                        <li class="flex items-center">✔️ Sales Representatives</li>
+                        <li class="flex items-center">✔️ Cold Calling Specialists</li>
+                        <li class="flex items-center">✔️ Executive Assistants & Secretaries</li>
+                        <li class="flex items-center">✔️ Email & Calendar Management Specialists</li>
+                    </ul>
+                    <div class="bg-gray-50 p-6 rounded-2xl">
+                        <h4 class="font-bold text-primary mb-3">What You Get with Siduva:</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li>• Professional and trained remote staff.</li>
+                            <li>• Flexible support based on your business needs.</li>
+                            <li>• Improved productivity and organization.</li>
+                            <li>• Better customer service and response time.</li>
+                            <li>• Cost-effective hiring solution.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="apply" class="section-view py-16 px-4 max-w-3xl mx-auto">
+            <h2 class="text-4xl font-bold text-primary mb-6">Join Our Team</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <p class="text-lg mb-6">Good day! Thank you for your interest. To apply, please follow these instructions:</p>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-bold text-primary">Step 1: Email</h4>
+                        <p>Send your updated resume to <a href="mailto:siduvaou@gmail.com" class="text-secondary font-bold hover:underline">siduvaou@gmail.com</a></p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-primary">Step 2: Subject Format</h4>
+                        <code class="block bg-gray-100 p-3 rounded mt-2 text-sm font-mono">(Last Name, Full Name) - (Position Applying For)</code>
+                        <p class="text-sm mt-2 text-gray-500">Example: Dela Cruz, Juan Miguel - Virtual Assistant</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-primary">Step 3: Email Body</h4>
+                        <p>Please include a brief self-introduction and share something about yourself that is not already included in your resume.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-view py-16 px-4 max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-primary mb-6">Need a Virtual Assistant?</h2>
+            <div class="bg-gray-100 p-10 rounded-3xl">
+                <p class="text-xl mb-8">Ready to grow your business with the right support? Email us at siduvaou@gmail.com to schedule a meeting and learn how our skilled Filipino Virtual Assistants can help your business succeed.</p>
+                <a href="mailto:siduvaou@gmail.com" class="bg-primary text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-blue-800 transition">Email Us to Get Started</a>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="bg-brand-navy text-white pt-16 pb-8 border-t-[6px] border-brand-accent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 border-b border-gray-700 pb-10 mb-8">
-                
-                <!-- Footer Brand -->
-                <div class="flex flex-col items-center md:items-start">
-                    <div class="text-3xl font-extrabold tracking-tighter flex items-center mb-4">
-                        <span class="bg-white text-brand-navy w-10 h-10 rounded-lg flex items-center justify-center mr-3 shadow-md">S</span>
-                        SIDUVA
-                    </div>
-                    <p class="text-gray-400 text-sm text-center md:text-left max-w-xs mt-2 leading-relaxed">
-                        Empowering businesses globally with reliable, skilled, and cost-effective virtual assistant support.
-                    </p>
-                </div>
-
-                <!-- Policies Links (from PDF) -->
-                <div class="flex flex-col items-center md:items-end w-full md:w-auto">
-                    <h4 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-6 border-b border-gray-700 pb-2 w-full md:text-right text-center">Legal & Policies</h4>
-                    <ul class="space-y-4 text-center md:text-right text-sm text-gray-400 font-medium">
-                        <li><a href="#" class="hover:text-brand-accent transition-colors inline-flex items-center group"><span class="group-hover:mr-2 transition-all">Privacy Policy</span> <i class="fas fa-chevron-right text-[10px] ml-2 opacity-0 group-hover:opacity-100 hidden md:inline"></i></a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition-colors inline-flex items-center group"><span class="group-hover:mr-2 transition-all">Terms & Conditions</span> <i class="fas fa-chevron-right text-[10px] ml-2 opacity-0 group-hover:opacity-100 hidden md:inline"></i></a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition-colors inline-flex items-center group"><span class="group-hover:mr-2 transition-all">Acceptable Use Policy</span> <i class="fas fa-chevron-right text-[10px] ml-2 opacity-0 group-hover:opacity-100 hidden md:inline"></i></a></li>
-                    </ul>
-                </div>
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="text-2xl font-bold text-white mb-6">SIDUVA</div>
+            <div class="flex justify-center space-x-6 mb-8 text-sm flex-wrap">
+                <span class="hover:text-white cursor-pointer">Privacy Policy</span>
+                <span class="hover:text-white cursor-pointer">Terms & Conditions</span>
+                <span class="hover:text-white cursor-pointer">Acceptable Use Policy</span>
             </div>
-            
-            <div class="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-500">
-                <div class="mb-4 sm:mb-0">
-                    &copy; <span id="year"></span> Siduva Virtual Assistants. All rights reserved.
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
+            <p class="text-xs">© 2026 Siduva. All Rights Reserved. Reference document: <span class="italic">siduva.pdf</span></p>
         </div>
     </footer>
 
     <script>
-        // Set dynamic year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Mobile Menu Functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            }
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-
-        // Close mobile menu on link click
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    toggleMenu();
-                }
+        function showSection(sectionId) {
+            // Hide all
+            document.querySelectorAll('.section-view').forEach(section => {
+                section.classList.remove('active');
             });
-        });
-
-        // Navbar scroll effect (add shadow when scrolling down)
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.remove('border-gray-100');
-            } else {
-                navbar.classList.remove('shadow-md');
-                navbar.classList.add('border-gray-100');
-            }
-        });
-
-        // Scroll Reveal Animation Logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // when to trigger
-
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
+            // Show target
+            document.getElementById(sectionId).classList.add('active');
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
-
-        // Trigger reveal on load and scroll
-        window.addEventListener("scroll", reveal);
-        // Initial check in case elements are already in view
-        setTimeout(reveal, 100);
     </script>
 </body>
 </html>
